@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html ng-app="directivesModule">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+
+    <script src="//code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+    <script src="customerApp.js"></script>
+
+    <style>
+        p {
+            color: red;
+        }
+    </style>
+
+</head>
+<body ng-controller="CustomersController">
+
+    <p>A simple directive</p>
+    <div my-shared-scope></div>
+
+    <p>Manipulating DOM</p>
+    <div my-dom-directive>Click Me!</div>
+
+    <p>One way binding : Controllers to diretives only</p>
+    <div my-isolated-scope-with-name name="{{ customer.name }}"></div>
+
+    <p>Two way binding : Controllers to diretives and vice-versa</p>
+    <div my-isolated-scope-with-model customers="customers"></div>
+
+    <p>Two way binding : Linking external functions (in controllers) to the directive</p>
+    <div my-isolated-scope-with-model-and-function
+         datasource="customer"
+         action="changeData()">
+    </div>
+</body>
+</html>

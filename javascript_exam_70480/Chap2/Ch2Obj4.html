@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script>     
+        window.onload = function ()
+        {
+            WillCallBackWhenDone(MyCallBack, 3, 3);
+        }
+
+        function WillCallBackWhenDone(f, a, b) {
+            var r = a * b;
+            f(r);
+        }
+
+        function MyCallBack(result) {
+            alert(result);
+        } 
+    </script>
+</head>
+<body>
+    <p> here we go call back</p>
+</body>
+</html>
