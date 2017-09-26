@@ -1,4 +1,5 @@
-﻿/**
+﻿/**/
+/**
  * change the handling function names for window.onload event
  */
 
