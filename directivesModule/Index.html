@@ -34,5 +34,15 @@
          datasource="customer"
          action="changeData()">
     </div>
+
+    <p>Passing data from a directive to the external controller</p>
+    <div isolated-scope-with-controller datasource="customers" add="addCustomerFromDirective(name)"></div>
+
+    <p>THE CONTROLLER IN A DIRECTIVE<br /></p>
+    <p>As an Attribute: </p>
+    <div isolate-scope-with-controller datasource="customers" add="addCustomer()"></div>
+    <p>As an Element: </p>
+    <isolate-scope-with-controller datasource="customers" add="addCustomer()">
+    </isolate-scope-with-controller>
 </body>
 </html>

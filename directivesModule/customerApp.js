@@ -89,3 +89,63 @@ angular.module('directivesModule').directive('myIsolatedScopeWithModelAndFunctio
         '<button ng-click="action()">Change Data</button>'
     };
 });
+
+angular.module('directivesModule').directive('isolatedScopeWithController', function () {
+    return {
+        restrict: 'EA',
+        scope: {
+            datasource: '=',
+            add: '&',
+        },
+        controller: function ($scope) {
+
+            $scope.addCustomer = function () {
+                //Call external scope's function
+                var name = 'New Customer Added (From Directive to the External Controller)';
+                $scope.add({ name: name });
+
+                //Add new customer to directive scope
+                $scope.datasource.push({
+                    name: name,
+                    street: ' Main St (From Directive)'
+                });
+            };
+        },
+        template: '<button ng-click="addCustomer()">Change Data From Directive</button><ul>' +
+        '<li ng-repeat="cust in customers">{{ cust.name }}</li></ul>'
+    };
+});
+
+app.directive('isolateScopeWithController', function () {
+
+    var controller = ['$scope', function ($scope) {
+
+        function init() {
+            $scope.items = angular.copy($scope.datasource);
+        }
+
+        init();
+
+        $scope.addItem = function () {
+            $scope.add();
+
+            //Add new customer to directive scope
+            $scope.items.push({
+                name: 'New Directive Controller Item'
+            });
+        };
+    }],
+
+        template = '<button ng-click="addItem()">Add Item From directives Controller</button><ul>' +
+            '<li ng-repeat="item in items">{{ ::item.name }}</li></ul>';
+
+    return {
+        restrict: 'EA', //Default in 1.3+
+        scope: {
+            datasource: '=',
+            add: '&',
+        },
+        controller: controller,
+        template: template
+    };
+});
